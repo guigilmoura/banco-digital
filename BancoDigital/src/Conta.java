@@ -1,6 +1,5 @@
-import java.time.Clock;
-import java.util.Calendar;
-import java.util.LinkedList;
+import javax.swing.*;
+import java.util.*;
 
 public abstract class Conta implements OperacoesBasicasConta{
 
@@ -10,6 +9,9 @@ public abstract class Conta implements OperacoesBasicasConta{
     protected static int agencia = 1;
     protected float saldo = 0;
     protected LinkedList<String> historico;
+    public Cliente cliente;
+    java.util.Date date = new java.util.Date();
+
 
     public Conta(){
         this.numeroDeConta = SEQUENCIAL++;
@@ -20,24 +22,22 @@ public abstract class Conta implements OperacoesBasicasConta{
     @Override
     public void depositar(double valor) {
         this.saldo += valor;
-        this.historico.add("deposito : "+valor+" // Novo saldo = "+this.saldo);
+        this.historico.add(date+"  -  deposito : "+valor+" // Novo saldo = "+this.saldo);
     }
 
     @Override
     public void sacar(double valor) {
         this.saldo -= valor;
-        this.historico.add("saque : "+valor+" // Novo saldo = "+this.saldo);
+        this.historico.add(date+"  -  saque : "+valor+" // Novo saldo = "+this.saldo);
     }
 
     @Override
-    public void transferir(double valor, Conta destino) {
+    public void pix(double valor, Conta destino) {
         this.saldo -= valor;
         destino.saldo += valor;
-        Calendar calendar = Calendar.getInstance();
-        java.util.Date date = new java.util.Date();
         this.historico.add(date+"  -  transferência de "+valor+" para titular: "+destino.getNomeTitular()+
                 "(conta:"+destino.getNumeroDeConta()+")"+" // Novo saldo = "+this.saldo);
-        destino.historico.add("recebimento de "+valor+" de titular: "+destino.getNomeTitular()+
+        destino.historico.add(date+"  -  recebimento de "+valor+" de titular: "+destino.getNomeTitular()+
                 "(conta:"+destino.getNumeroDeConta()+")"+" // Novo saldo = "+destino.saldo);
     }
 
@@ -60,6 +60,8 @@ public abstract class Conta implements OperacoesBasicasConta{
     public int getNumeroDeConta() {
         return numeroDeConta;
     }
+
+    public Cliente getCliente() {return cliente;}
 
     public static int getAgencia() {
         return agencia;
