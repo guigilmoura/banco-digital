@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 
 public class ContaInvestimentos extends Conta {
@@ -12,7 +13,8 @@ public class ContaInvestimentos extends Conta {
 
     @Override
     public void imprimirRendimentoEstimado() {
-        double x = calcularRendimento();
+        double y = calcularRendimento();
+        String x = new DecimalFormat("##.##").format(y);
         System.out.println("Valor esperado = R$" + x);
     }
 
