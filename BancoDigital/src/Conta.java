@@ -1,3 +1,5 @@
+import java.time.Clock;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 public abstract class Conta implements OperacoesBasicasConta{
@@ -31,7 +33,9 @@ public abstract class Conta implements OperacoesBasicasConta{
     public void transferir(double valor, Conta destino) {
         this.saldo -= valor;
         destino.saldo += valor;
-        this.historico.add("transferência de "+valor+" para titular: "+destino.getNomeTitular()+
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date date = new java.util.Date();
+        this.historico.add(date+"  -  transferência de "+valor+" para titular: "+destino.getNomeTitular()+
                 "(conta:"+destino.getNumeroDeConta()+")"+" // Novo saldo = "+this.saldo);
         destino.historico.add("recebimento de "+valor+" de titular: "+destino.getNomeTitular()+
                 "(conta:"+destino.getNumeroDeConta()+")"+" // Novo saldo = "+destino.saldo);
