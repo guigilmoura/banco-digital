@@ -6,14 +6,15 @@ public class Main {
     public static void main(String[] args) {
         List<Cliente> listaDeClientes = new ArrayList<>();
         Conta contaCorrenteJoao = new ContaCorrente();
-        Cliente joao = new Cliente("joao", "123456", "senhadojoao", contaCorrenteJoao);
+        Cliente joao = new Cliente("joao", "1" +
+                "", "2", contaCorrenteJoao);
         contaCorrenteJoao.cliente = joao;
         listaDeClientes.add(joao);
         Conta contaInvestimentosMaria = new ContaInvestimentos();
         Cliente maria = new Cliente("maria", "654321", "senhadamaria", contaInvestimentosMaria);
         listaDeClientes.add(maria);
 
-        System.out.println("depositando 100 na conta de joão");
+        /*System.out.println("depositando 100 na conta de joão");
 
         contaCorrenteJoao.depositar(100);
 
@@ -65,9 +66,9 @@ public class Main {
 
         contaInvestimentosMaria.imprimirHistorico();
 
-        contaInvestimentosMaria.imprimirRendimentoEstimado();
+        contaInvestimentosMaria.imprimirRendimentoEstimado();*/
 
-        //Terminal.terminalAutenticacao(Cliente.listaDeClientes);
+        Terminal.terminalAutenticacao(listaDeClientes);
 
     }
 }

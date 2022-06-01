@@ -8,13 +8,13 @@ public class Autenticacao {
     public static boolean login(List<Cliente> listaDeClientes) {
         boolean loginEncontrado = false;
         boolean autenticado = false;
-        String login = JOptionPane.showInputDialog("Digite o CPF para fazer login");
+        String login = JOptionPane.showInputDialog("Digite o CPF para fazer login - (TENTE 1 PARA A CONTA DEMO DE JOÃO)");
         Iterator<Cliente> iterator = listaDeClientes.iterator();
         while (iterator.hasNext() && !autenticado){
             Cliente clienteAtual = iterator.next();
             if (clienteAtual.getCpf().equals(login)){
                 loginEncontrado = true;
-                String senha = JOptionPane.showInputDialog("Digite a senha para fazer login");
+                String senha = JOptionPane.showInputDialog("Digite a senha para fazer login - (TENTE 2 PARA A CONTA DEMO DE JOÃO)");
                 if (senha.equals(clienteAtual.getSenha())){
                     autenticado = true;
                     contaAberta = clienteAtual.getConta();
